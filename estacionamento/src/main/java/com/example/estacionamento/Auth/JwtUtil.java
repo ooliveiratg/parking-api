@@ -1,19 +1,26 @@
 package com.example.estacionamento.Auth;
 
+import java.util.Date;
+
+import javax.crypto.SecretKey;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-
-import javax.crypto.SecretKey;
-import java.util.Date;
 
 @Component
 public class JwtUtil {
 
-    private final SecretKey SECRET_KEY = Keys.hmacShaKeyFor("chave-secreta-super-grande-1234567890".getBytes());
+    private final SecretKey SECRET_KEY;
+
+    public JwtUtil(@Value("${JWT_SECRET}") String secret) {
+        this.SECRET_KEY = Keys.hmacShaKeyFor(secret.getBytes());
+    }
 
     public String generateToken(UserDetails userDetails) {
         return Jwts.builder()
