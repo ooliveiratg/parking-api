@@ -32,7 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
-
+.env
 
 /estacionamento/src/main/resources/application.properties
 
