@@ -19,8 +19,11 @@ public class JwtUtil {
     private final SecretKey SECRET_KEY;
 
     public JwtUtil(@Value("${JWT_SECRET}") String secret) {
-        this.SECRET_KEY = Keys.hmacShaKeyFor(secret.getBytes());
+    if (secret == null || secret.isBlank()) {
+        throw new IllegalArgumentException("JWT_SECRET não configurado!");
     }
+    this.SECRET_KEY = Keys.hmacShaKeyFor(secret.getBytes());
+}
 
     public String generateToken(UserDetails userDetails) {
         return Jwts.builder()
