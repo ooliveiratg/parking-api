@@ -104,7 +104,7 @@ public class SecurityConfig {
         configuration.setAllowCredentials(true);
 
         // "addAllowedOrigin" não suporta curingas de porta -> trocar por addAllowedOriginPattern
-        configuration.setAllowedOriginPatterns(List.of("https://parking-api-9rj9.onrender.com/")); // ou o domínio do seu front
+        configuration.setAllowedOriginPatterns(List.of("*")); // ou o domínio do seu front
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
 
