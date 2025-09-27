@@ -101,7 +101,6 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowCredentials(true);
 
         // "addAllowedOrigin" não suporta curingas de porta -> trocar por addAllowedOriginPattern
         configuration.setAllowedOriginPatterns(List.of("*")); // ou o domínio do seu front
