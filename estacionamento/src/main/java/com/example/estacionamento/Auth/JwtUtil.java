@@ -27,11 +27,10 @@ public class JwtUtil {
 
     public String generateToken(UserDetails userDetails) {
         return Jwts.builder()
-                .setSubject(userDetails.getUsername())
+                .setSubject(userDetails.getId())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1h
                 .signWith(SECRET_KEY, SignatureAlgorithm.HS256)
-                .withClaim(userDetails.getId())
                 .compact();
     }
 
